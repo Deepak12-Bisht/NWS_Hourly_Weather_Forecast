@@ -1,0 +1,46 @@
+-- 1) What is the highest and lowest temperature in the forecast?
+SELECT 
+    MAX(temperature) AS highest_temp,
+    MIN(temperature) AS lowest_temp
+FROM hourly_forecast;
+
+-- 2) Show the daily high and low temperature.
+SELECT 
+    DATE(startTime) AS forecast_date,
+    MAX(temperature) AS daily_high,
+    MIN(temperature) AS daily_low
+FROM hourly_forecast
+GROUP BY DATE(startTime)
+ORDER BY forecast_date;
+
+-- 3) What are the most frequent weather conditions?
+SELECT 
+    shortForecast,
+    COUNT(*) AS occurrences
+FROM hourly_forecast
+GROUP BY shortForecast
+ORDER BY occurrences DESC;
+
+-- 4) Compare average temperature between day and night.
+SELECT 
+    isDaytime,
+    ROUND(AVG(temperature), 2) AS avg_temperature
+FROM hourly_forecast
+GROUP BY isDaytime;
+
+-- 5) assuming windSpeed is stored as '5 mph', strip text & cast to number
+SELECT 
+    startTime,
+    CAST(REPLACE(windSpeed, ' mph', '') AS UNSIGNED) AS wind_speed_num
+FROM hourly_forecast
+ORDER BY wind_speed_num DESC
+LIMIT 10;
+
+-- 6) Which wind direction is most common?
+SELECT 
+    windDirection,
+    COUNT(*) AS occurrences
+FROM hourly_forecast
+WHERE windDirection IS NOT NULL
+GROUP BY windDirection
+ORDER BY occurrences DESC;
