@@ -68,5 +68,3 @@ This project highlights my ability to:
 - Apply **Python** for data cleaning, transformation, and visualization.  
 - Use **MySQL** to perform detailed data analysis through SQL queries.  
 - Derive **actionable insights** from real-time weather data.  
-
-It demonstrates my strength in combining **data engineering and analytical skills** — from raw data extraction to insight generation and reporting.
